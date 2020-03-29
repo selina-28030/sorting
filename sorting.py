@@ -80,6 +80,8 @@ def merge_sorted(xs, cmp=cmp_standard):
 
     You should return a sorted version of the input list xs
     '''
+    if len(xs) == 0:
+        return xs
     if len(xs) == 1:
         return xs
     else:
