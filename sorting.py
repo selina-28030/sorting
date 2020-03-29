@@ -46,6 +46,23 @@ def _merged(xs, ys, cmp=cmp_standard):
     and returns a new list containing the elements of both xs and ys.
     Runs in linear time.
     '''
+    size_1 = len(xs) 
+    size_2 = len(ys) 
+    
+    res = [] 
+    i, j = 0, 0
+    
+    while i < size_1 and j < size_2: 
+        if cmp(xs[i], ys[j]) == -1: 
+            res.append(xs[i]) 
+            i += 1
+        else: 
+            res.append(ys[j]) 
+            j += 1
+    
+    res = res + xs[i:] + ys[j:]
+    return res
+
 
 
 def merge_sorted(xs, cmp=cmp_standard):
