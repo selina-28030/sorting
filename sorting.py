@@ -128,3 +128,37 @@ def quick_sort(xs, cmp=cmp_standard):
     to implement quick_sort as an in-place algorithm.
     You should directly modify the input xs variable instead of returning a copy of the list.
     '''
+    if len(xs) == 1:
+        return xs
+    else:
+        quickSortHelper(alist,0,len(alist)-1)
+    return alist
+
+def quickSortHelper(alist,first,last):
+    if first<last:
+        splitpoint = partition(alist,first,last)
+        quickSortHelper(alist,first,splitpoint-1)
+        quickSortHelper(alist,splitpoint+1,last)
+
+
+def partition(alist,first,last, cmp = cmp_standard):
+    pivotvalue = alist[first]
+    leftmark = first+1
+    rightmark = last
+
+    done = False
+    while not done:
+        while cmp(leftmark,rightmark) == -1 and cmp(alist[leftmark],pivotvalue) == -1:
+            leftmark = leftmark + 1
+        while cmp(alist[rightmark], pivotvalue) == 1 and cmp(rightmark, leftmark) == 1:
+            rightmark = rightmark -1
+        if cmp(rightmark, leftmark) == -1:
+            done = True
+        else:
+            temp = alist[leftmark]
+            alist[leftmark] = alist[rightmark]
+            alist[rightmark] = temp
+    temp = alist[first]
+    alist[first] = alist[rightmark]
+    alist[rightmark] = temp
+    return rightmark
