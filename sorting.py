@@ -117,35 +117,35 @@ def quick_sorted(xs, cmp=cmp_standard):
     if len(xs) == 1:
         return xs
     else:
-        quickSortHelper(alist,0,len(alist)-1)
-        return alist
+        quickSortHelper(xs,0,len(xs)-1)
+        return xs
 
-def quickSortHelper(alist,first,last):
+def quickSortHelper(xs,first,last):
     if first<last:
-        splitpoint = partition(alist,first,last)
-        quickSortHelper(alist,first,splitpoint-1)
-        quickSortHelper(alist,splitpoint+1,last)
+        splitpoint = partition(xs,first,last)
+        quickSortHelper(xs,first,splitpoint-1)
+        quickSortHelper(xs,splitpoint+1,last)
 
 
-def partition(alist,first,last, cmp = cmp_standard):
-    pivotvalue = alist[first]
+def partition(xs,first,last, cmp = cmp_standard):
+    pivotvalue = xs[first]
     leftmark = first+1
     rightmark = last
 
     done = False
     while not done:
-        while cmp(leftmark,rightmark) == -1 or cmp(leftmark,rightmark) == 0 and cmp(alist[leftmark],pivotvalue) == -1 or cmp(alist[leftmark],pivotvalue) == 0:
+        while cmp(leftmark,rightmark) == -1 or cmp(leftmark,rightmark) == 0 and cmp(xs[leftmark],pivotvalue) == -1 or cmp(xs[leftmark],pivotvalue) == 0:
             leftmark = leftmark + 1
-        while cmp(alist[rightmark], pivotvalue) == 1 or cmp(alist[rightmark], pivotvalue) == 0 and cmp(rightmark, leftmark) == 1 or cmp(rightmark, leftmark) == 0:
+        while cmp(xs[rightmark], pivotvalue) == 1 or cmp(xs[rightmark], pivotvalue) == 0 and cmp(rightmark, leftmark) == 1 or cmp(rightmark, leftmark) == 0:
             rightmark = rightmark -1
         if cmp(rightmark, leftmark) == -1:
             done = True
         else:
-            temp = alist[leftmark]
-            alist[leftmark] = alist[rightmark]
-            alist[rightmark] = temp
-    temp = alist[first]
-    alist[first] = alist[rightmark]
-    alist[rightmark] = temp
-    return rightmark
+            temp = xs[leftmark]
+            xs[leftmark] = xs[rightmark]
+            xs[rightmark] = temp
+    temp = xs[first]
+    xs[first] = xs[rightmark]
+    xs[rightmark] = temp
+    return xs
 
