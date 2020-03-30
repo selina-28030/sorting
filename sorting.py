@@ -147,5 +147,5 @@ def partition(xs,first,last, cmp = cmp_standard):
     temp = xs[first]
     xs[first] = xs[rightmark]
     xs[rightmark] = temp
-    return xs
+    return rightmark
 
