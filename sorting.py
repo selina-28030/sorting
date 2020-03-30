@@ -118,42 +118,36 @@ def quick_sorted(xs, cmp=cmp_standard):
 
     You should return a sorted version of the input list xs
     '''
-    if len(xs) == 1:
+def quick_sorted(xs, cmp=cmp_standard):
+    '''
+    Quicksort is like mergesort,
+    but it uses a different strategy to split the list.
+    Instead of splitting the list down the middle,
+    a "pivot" value is randomly selected, 
+    and the list is split into a "less than" sublist and a "greater than" sublist.
+    The pseudocode is:
+        if xs has 1 element
+            it is sorted, so return xs
+        else
+            select a pivot value p
+            put all the values less than p in a list
+            put all the values greater than p in a list
+            sort both lists recursively
+            return the concatenation of (less than, p, and greater than)
+    You should return a sorted version of the input list xs
+    '''
+    if len(xs) <= 1:
         return xs
-    else:
-        quickSortHelper(xs,0,len(xs)-1, cmp = cmp)
-        return xs
-
-def quickSortHelper(xs,first,last, cmp = cmp_standard):
-    if first<last:
-        splitpoint = partition(xs,first,last, cmp = cmp)
-        quickSortHelper(xs,first,splitpoint-1, cmp = cmp)
-        quickSortHelper(xs,splitpoint+1,last, cmp = cmp)
-
-
-def partition(xs,first,last, cmp = cmp_standard):
-    pivotvalue = xs[first]
-    leftmark = first+1
-    rightmark = last
-
-    done = False
-    while not done:
-        comp = cmp(leftmark,rightmark)
-        comp1 = cmp(xs[leftmark],pivotvalue)
-        comp2 = cmp(xs[rightmark], pivotvalue)
-        comp3 = cmp(rightmark, leftmark)
-        while comp <= 0 and comp1 <= 0:
-            leftmark = leftmark + 1
-        while comp2 >= 0 and comp3 >= 0:
-            rightmark = rightmark -1
-        if comp3 == -1:
-            done = True
-        else:
-            temp = xs[leftmark]
-            xs[leftmark] = xs[rightmark]
-            xs[rightmark] = temp
-    temp = xs[first]
-    xs[first] = xs[rightmark]
-    xs[rightmark] = temp
-    return rightmark
+    pivotvalue = xs[0]
+    lower = []
+    upper = []
+    equal = []
+    for x in xs:
+        if cmp(x, pivotvalue) == -1:
+            lower.append(x)
+        elif cmp(x, pivotvalue) == 1:
+            upper.append(x)
+        elif cmp(x, pivotvalue) == 0:
+            equal.append(x)
+    return quick_sorted(lower, cmp) + quick_sorted(equal, cmp) + quick_sorted(upper, cmp)
 
