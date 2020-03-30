@@ -114,25 +114,11 @@ def quick_sorted(xs, cmp=cmp_standard):
 
     You should return a sorted version of the input list xs
     '''
-
-
-def quick_sort(xs, cmp=cmp_standard):
-    '''
-    EXTRA CREDIT:
-    The main advantage of quick_sort is that it can be implemented in-place,
-    i.e. with O(1) memory requirement.
-    Merge sort, on the other hand, has an O(n) memory requirement.
-
-    Follow the pseudocode of the Lomuto partition scheme given on wikipedia
-    (https://en.wikipedia.org/wiki/Quicksort#Algorithm)
-    to implement quick_sort as an in-place algorithm.
-    You should directly modify the input xs variable instead of returning a copy of the list.
-    '''
     if len(xs) == 1:
         return xs
     else:
         quickSortHelper(alist,0,len(alist)-1)
-    return alist
+        return alist
 
 def quickSortHelper(alist,first,last):
     if first<last:
@@ -162,3 +148,17 @@ def partition(alist,first,last, cmp = cmp_standard):
     alist[first] = alist[rightmark]
     alist[rightmark] = temp
     return rightmark
+
+def quick_sort(xs, cmp=cmp_standard):
+    '''
+    EXTRA CREDIT:
+    The main advantage of quick_sort is that it can be implemented in-place,
+    i.e. with O(1) memory requirement.
+    Merge sort, on the other hand, has an O(n) memory requirement.
+
+    Follow the pseudocode of the Lomuto partition scheme given on wikipedia
+    (https://en.wikipedia.org/wiki/Quicksort#Algorithm)
+    to implement quick_sort as an in-place algorithm.
+    You should directly modify the input xs variable instead of returning a copy of the list.
+    '''
+
