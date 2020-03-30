@@ -94,7 +94,7 @@ def merge_sorted(xs, cmp=cmp_standard):
         rightlist = xs[mid:]
         l = merge_sorted(leftlist, cmp=cmp)
         r = merge_sorted(rightlist, cmp=cmp)
-        return _merged(l,r)
+        return _merged(l,r, cmp = cmp)
 
 
 def quick_sorted(xs, cmp=cmp_standard):
