@@ -80,17 +80,26 @@ def merge_sorted(xs, cmp=cmp_standard):
 
     You should return a sorted version of the input list xs
     '''
-    if len(xs) == 0:
-        return xs
-    if len(xs) == 1:
-        return xs
-    else:
-        mid = len(xs)//2
-        leftlist = xs[:mid]
-        rightlist = xs[mid:]
-        l = merge_sorted(leftlist, cmp=cmp)
-        r = merge_sorted(rightlist, cmp=cmp)
-        return _merged(l,r)
+    size_1 = len(xs) 
+    size_2 = len(ys) 
+    
+    res = [] 
+    i, j = 0, 0
+    
+    while i < size_1 and j < size_2:
+        comp = cmp(xs[i], ys[j])
+        if comp == -1:
+            res.append(xs[i]) 
+            i += 1
+        elif comp == 1:
+            res.append(ys[j])
+            j += 1
+        else:
+            res.append(ys[j])
+            j += 1
+    
+    res = res + xs[i:] + ys[j:]
+    return res
 
 
 def quick_sorted(xs, cmp=cmp_standard):
