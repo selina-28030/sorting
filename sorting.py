@@ -138,11 +138,15 @@ def partition(xs,first,last, cmp = cmp_standard):
 
     done = False
     while not done:
-        while cmp(leftmark,rightmark) <= 0 and cmp(xs[leftmark],pivotvalue) <= 0:
+        comp = cmp(leftmark,rightmark)
+        comp1 = cmp(xs[leftmark],pivotvalue)
+        comp2 = cmp(xs[rightmark], pivotvalue)
+        comp3 = cmp(rightmark, leftmark)
+        while comp <= 0 and comp1 <= 0:
             leftmark = leftmark + 1
-        while cmp(xs[rightmark], pivotvalue) >= 0 and cmp(rightmark, leftmark) >= 0:
+        while comp2 >= 0 and comp3 >= 0:
             rightmark = rightmark -1
-        if cmp(rightmark, leftmark) == -1:
+        if comp3 == -1:
             done = True
         else:
             temp = xs[leftmark]
