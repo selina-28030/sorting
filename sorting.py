@@ -126,7 +126,7 @@ def quick_sorted(xs, cmp=cmp_standard):
 
 def quickSortHelper(xs,first,last):
     if first<last:
-        splitpoint = partition(xs,first,last)
+        splitpoint = partition(xs,first,last, cmp = cmp)
         quickSortHelper(xs,first,splitpoint-1)
         quickSortHelper(xs,splitpoint+1,last)
 
