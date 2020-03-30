@@ -121,14 +121,14 @@ def quick_sorted(xs, cmp=cmp_standard):
     if len(xs) == 1:
         return xs
     else:
-        quickSortHelper(xs,0,len(xs)-1)
+        quickSortHelper(xs,0,len(xs)-1, cmp = cmp)
         return xs
 
-def quickSortHelper(xs,first,last):
+def quickSortHelper(xs,first,last, cmp = cmp_standard):
     if first<last:
         splitpoint = partition(xs,first,last, cmp = cmp)
-        quickSortHelper(xs,first,splitpoint-1)
-        quickSortHelper(xs,splitpoint+1,last)
+        quickSortHelper(xs,first,splitpoint-1, cmp = cmp)
+        quickSortHelper(xs,splitpoint+1,last, cmp = cmp)
 
 
 def partition(xs,first,last, cmp = cmp_standard):
