@@ -136,18 +136,19 @@ def quick_sorted(xs, cmp=cmp_standard):
             return the concatenation of (less than, p, and greater than)
     You should return a sorted version of the input list xs
     '''
-    if len(xs) <= 1:
+    if len(xs)<=1:
         return xs
-    pivotvalue = xs[0]
-    lower = []
-    upper = []
-    equal = []
-    for x in xs:
-        if cmp(x, pivotvalue) == -1:
-            lower.append(x)
-        elif cmp(x, pivotvalue) == 1:
-            upper.append(x)
-        elif cmp(x, pivotvalue) == 0:
-            equal.append(x)
-    return quick_sorted(lower, cmp) + quick_sorted(equal, cmp) + quick_sorted(upper, cmp)
+    else:
+        pivot=xs[0]
+        lower=[]
+        equal=[]
+        upper=[]
+        for x in xs:
+            if cmp(x,pivot)==-1:
+                lower+=[x]
+            elif cmp(x,pivot)==1:
+                upper+=[x]
+            else:
+                equal+=[x]
+        return quick_sorted(lower,cmp)+equal+quick_sorted(upper,cmp)
 
