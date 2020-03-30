@@ -134,9 +134,9 @@ def partition(xs,first,last, cmp = cmp_standard):
 
     done = False
     while not done:
-        while cmp(leftmark,rightmark) == -1 or cmp(leftmark,rightmark) == 0 and cmp(xs[leftmark],pivotvalue) == -1 or cmp(xs[leftmark],pivotvalue) == 0:
+        while cmp(leftmark,rightmark) <= 0 and cmp(xs[leftmark],pivotvalue) <= 0:
             leftmark = leftmark + 1
-        while cmp(xs[rightmark], pivotvalue) == 1 or cmp(xs[rightmark], pivotvalue) == 0 and cmp(rightmark, leftmark) == 1 or cmp(rightmark, leftmark) == 0:
+        while cmp(xs[rightmark], pivotvalue) >= 0 and cmp(rightmark, leftmark) >= 0:
             rightmark = rightmark -1
         if cmp(rightmark, leftmark) == -1:
             done = True
