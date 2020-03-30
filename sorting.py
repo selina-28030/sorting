@@ -148,9 +148,9 @@ def partition(alist,first,last, cmp = cmp_standard):
 
     done = False
     while not done:
-        while cmp(leftmark,rightmark) == -1 and cmp(alist[leftmark],pivotvalue) == -1:
+        while cmp(leftmark,rightmark) == -1 or cmp(leftmark,rightmark) == 0 and cmp(alist[leftmark],pivotvalue) == -1 or cmp(alist[leftmark],pivotvalue) == 0:
             leftmark = leftmark + 1
-        while cmp(alist[rightmark], pivotvalue) == 1 and cmp(rightmark, leftmark) == 1:
+        while cmp(alist[rightmark], pivotvalue) == 1 or cmp(alist[rightmark], pivotvalue) == 0 and cmp(rightmark, leftmark) == 1 or cmp(rightmark, leftmark) == 0:
             rightmark = rightmark -1
         if cmp(rightmark, leftmark) == -1:
             done = True
